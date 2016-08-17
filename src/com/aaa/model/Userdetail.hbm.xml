@@ -15,7 +15,7 @@
             </generator>
         </id>
         <one-to-one name="user" class="com.aaa.model.User" constrained="true"></one-to-one>
-        <property name="xb" type="java.lang.Boolean">
+        <property name="xb" type="java.lang.Byte">
             <column name="xb" />
         </property>
         <property name="truename" type="java.lang.String">

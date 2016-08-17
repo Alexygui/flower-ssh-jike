@@ -16,7 +16,8 @@
         <property name="orderdate" type="java.sql.Timestamp">
             <column name="orderdate" length="19" />
         </property>
-        <set name="orderitems" inverse="true">
+        <!-- 设置cascade="all"表示新增订单的同时也会新增orderitem -->
+        <set name="orderitems" inverse="true" cascade="all">
             <key>
                 <column name="orderid" />
             </key>

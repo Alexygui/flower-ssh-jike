@@ -22,6 +22,7 @@
         <property name="picture" type="java.lang.String">
             <column name="picture" length="30" />
         </property>
+ <!-- 此处不用设置cascade="all"，因为不可能出现新增鲜花的同时就会新增订单的情况 -->
         <set name="orderitems" inverse="true">
             <key>
                 <column name="flowerid" />
