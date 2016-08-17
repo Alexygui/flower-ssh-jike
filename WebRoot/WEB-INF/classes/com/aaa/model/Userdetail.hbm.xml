@@ -8,7 +8,11 @@
     <class name="com.aaa.model.Userdetail" table="userdetail" catalog="ssh_flower">
         <id name="userid" type="java.lang.Integer">
             <column name="userid" />
-            <generator class="identity" />
+            <!-- <generator class="identity" /> -->
+            <!-- 表示userdetail的主键是和user表的主键关联的，而不是自动生成的 -->
+            <generator class="foreign">
+            		<param name="property">user</param>
+            </generator>
         </id>
         <one-to-one name="user" class="com.aaa.model.User" constrained="true"></one-to-one>
         <property name="xb" type="java.lang.Boolean">
