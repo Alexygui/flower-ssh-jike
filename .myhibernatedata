@@ -1,16 +1,20 @@
 #MyEclipse Hibernate Properties
-#Wed Aug 17 15:46:39 CST 2016
-genVersionTag=false
-genAnnotations=false
-configFile=/flower-ssh-jike/src/applicationContext.xml
-reStrategyClass=
-sessionFactoryId=sessionFactory
+#Wed Aug 17 17:32:54 CST 2016
+genBasicCompId=true
+sessionFactoryName=
 profile=
-detectM2M=false
-genBasicCompId=false
-keyGenerator=
-createConfigFile=true
-basePersistenceClass=
-detectO2O=false
+daoSFId=
+jndiPath=
+detectM2M=true
+reStrategyClass=
+detectO2O=true
+springDaoFile=
 useJavaTypes=true
+keyGenerator=identity
+genVersionTag=true
+sessionFactoryId=sessionFactory
+basePersistenceClass=
+genAnnotations=false
 reSettingsFile=
+configFile=/flower-ssh-jike/src/applicationContext.xml
+createConfigFile=true

@@ -9,8 +9,9 @@
 	<bean id="dataSource"
 		class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="url"
-			value="jdbc:mysql://localhost:3306/flower?useUnicode=true&amp;characterEncoding=UTF-8">
+			value="jdbc:mysql://localhost:3306/ssh_flower?useUnicode=true&amp;characterEncoding=UTF-8">
 		</property>
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
 		<property name="username" value="root"></property>
 		<property name="password" value="123456"></property>
 	</bean>
@@ -26,7 +27,16 @@
 				</prop>
 			</props>
 		</property>
-	</bean>
+		<property name="mappingResources">
+			<list>
+				<value>com/aaa/model/Flower.hbm.xml</value>
+				<value>com/aaa/model/Orders.hbm.xml</value>
+				<value>com/aaa/model/Userdetail.hbm.xml</value>
+				<value>com/aaa/model/User.hbm.xml</value>
+				<value>com/aaa/model/Guashi.hbm.xml</value>
+				<value>com/aaa/model/Orderitem.hbm.xml</value>
+				<value>com/aaa/model/Catalog.hbm.xml</value></list>
+		</property></bean>
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
