@@ -12,7 +12,8 @@
 <head>
 <base href="<%=basePath%>">
 
-<title>My JSP 'index.jsp' starting page</title>
+<title>My JSP 'menu.jsp' starting page</title>
+
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
 <meta http-equiv="expires" content="0">
@@ -21,19 +22,19 @@
 <!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
+
 </head>
 
 <body>
-	<jsp:include page="head.jsp"></jsp:include>
-	<div class="content">
-		<div class="left">	
-		<s:action name="browseCatalog" executeResult="true"></s:action>	 
-       	</div>
-		<div class="right">
-			<s:action name="browseNewFlower" executeResult="true"></s:action>
-	
-			</div>
-	</div>
-	<jsp:include page="foot.jsp"></jsp:include>
+
+
+
+	<s:iterator value="#request.catalogs" id="catalog">
+		<a href="browseFlowerPaging.action?catalogid=
+		    <s:property value=
+		    "#catalog.catalogid"/>
+    &currentPage=1" target="_self"><s:property value="#catalog.catalogname"/></a>   
+     <br><br>
+	</s:iterator>
 </body>
 </html>
