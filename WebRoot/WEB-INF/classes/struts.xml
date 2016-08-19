@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
-
+	<package name="default" extends="struts-default">
+	<!-- flowerAction指向applicataionContext.xml中的flowerAction，所以class不用写具体路径名 -->
+		<action name="browseCatalog" class="flowerAction" method="browseCatalog">
+			<result name="success">/menu.jsp</result>
+		</action>
+	</package>
 </struts>    

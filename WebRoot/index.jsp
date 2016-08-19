@@ -27,9 +27,11 @@
 	<jsp:include page="head.jsp"></jsp:include>
 	<div class="content">
 		<div class="left">	
+		
 		<s:action name="browseCatalog" executeResult="true"></s:action>	 
        	</div>
 		<div class="right">
+			首页右侧
 			<s:action name="browseNewFlower" executeResult="true"></s:action>
 	
 			</div>

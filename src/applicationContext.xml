@@ -1,32 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans
-	xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:p="http://www.springframework.org/schema/p"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd" xmlns:tx="http://www.springframework.org/schema/tx">
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  http://www.springframework.org/schema/beans/spring-beans-4.1.xsd 
+	http://www.springframework.org/schema/tx  http://www.springframework.org/schema/tx/spring-tx.xsd"
+	xmlns:tx="http://www.springframework.org/schema/tx">
 
 
-	<bean id="dataSource"
-		class="org.apache.commons.dbcp.BasicDataSource">
+
+	<!-- 配置连接池 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+
 		<property name="url"
 			value="jdbc:mysql://localhost:3306/ssh_flower?useUnicode=true&amp;characterEncoding=UTF-8">
 		</property>
-		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
 		<property name="username" value="root"></property>
 		<property name="password" value="123456"></property>
 	</bean>
+	
+
+	<!-- 配置hibernate相关属性 -->
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<!-- 注入连接池 -->
 		<property name="dataSource">
 			<ref bean="dataSource" />
 		</property>
 		<property name="hibernateProperties">
 			<props>
-				<prop key="hibernate.dialect">
-					org.hibernate.dialect.MySQLDialect
-				</prop>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<!-- <prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop> -->
 			</props>
 		</property>
+		<!-- 加载hibernate中的映射文件 -->
 		<property name="mappingResources">
 			<list>
 				<value>com/aaa/model/Flower.hbm.xml</value>
@@ -35,10 +43,32 @@
 				<value>com/aaa/model/User.hbm.xml</value>
 				<value>com/aaa/model/Guashi.hbm.xml</value>
 				<value>com/aaa/model/Orderitem.hbm.xml</value>
-				<value>com/aaa/model/Catalog.hbm.xml</value></list>
-		</property></bean>
+				<value>com/aaa/model/Catalog.hbm.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- 配置dao层,sessionFactory指向前面hibernate配置文件中生成的sessionFactory -->
+	<bean id="catalogDao" class="com.aaa.dao.impl.CatalogDao">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<!-- 配置service层，指向dao层的catalogDao -->
+	<bean id="catalogService" class="com.aaa.service.impl.CatalogService">
+		<property name="catalogDao" ref="catalogDao"></property>
+	</bean>
+	<!-- 配置action层，指向service层的catalogService -->
+	<bean id="flowerAction" class="com.aaa.action.FlowerAction">
+		<property name="catalogService" ref="catalogService"></property>
+	</bean>
+
+	 <!-- 配置事务 -->
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	<tx:annotation-driven transaction-manager="transactionManager" /></beans>
+	
+	<!-- 开启事务 -->
+	<tx:annotation-driven transaction-manager="transactionManager" />
+</beans>
