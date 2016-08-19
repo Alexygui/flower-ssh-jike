@@ -26,12 +26,15 @@
 <body>
 	<jsp:include page="head.jsp"></jsp:include>
 	<div class="content">
+	<!-- 网页左侧的显示内容 -->
 		<div class="left">	
 		
 		<s:action name="browseCatalog" executeResult="true"></s:action>	 
        	</div>
+       	
+       	<!-- 网页右侧显示内容 -->
 		<div class="right">
-			首页右侧
+			
 			<s:action name="browseNewFlower" executeResult="true"></s:action>
 	
 			</div>

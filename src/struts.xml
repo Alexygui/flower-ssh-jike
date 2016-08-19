@@ -6,5 +6,8 @@
 		<action name="browseCatalog" class="flowerAction" method="browseCatalog">
 			<result name="success">/menu.jsp</result>
 		</action>
+		<action name="browseNewFlower" class="flowerAction" method="browseNewFlower">
+			<result name="success">/newFlower.jsp</result>
+		</action>
 	</package>
 </struts>    

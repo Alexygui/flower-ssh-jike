@@ -54,13 +54,20 @@
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
+	<bean id="flowerDao" class="com.aaa.dao.impl.FlowerDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>	
+	</bean>
 	<!-- 配置service层，指向dao层的catalogDao -->
 	<bean id="catalogService" class="com.aaa.service.impl.CatalogService">
 		<property name="catalogDao" ref="catalogDao"></property>
 	</bean>
+	<bean name="flowerService" class="com.aaa.service.impl.FlowerService">
+		<property name="flowerDao" ref="flowerDao"></property>
+	</bean>
 	<!-- 配置action层，指向service层的catalogService -->
 	<bean id="flowerAction" class="com.aaa.action.FlowerAction">
 		<property name="catalogService" ref="catalogService"></property>
+		<property name="flowerService" ref="flowerService"></property>
 	</bean>
 
 	 <!-- 配置事务 -->

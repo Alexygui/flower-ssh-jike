@@ -26,8 +26,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body><div>
  
   <div>新品展示</div><br>
-  <s:set value="#request.newflowers" id="newflower"></s:set>
-  <s:iterator value="#newflower"  id="flower">
+  <s:set id="newflower" value="#request.newFlowers"/>
+ <s:iterator id="flower" value="#newflower"> 
  <div class="newflower">
  <s:form theme="simple" action="shoppingAction" method="post">
  <img src="pic/<s:property value="#flower.picture"/>"/>
