@@ -2,6 +2,10 @@ package com.aaa.dao;
 
 import java.util.List;
 
+import com.aaa.model.Flower;
+
 public interface IFlowerDao {
-	public List getNewFlowers();
+	public List<Flower> getNewFlowers();
+	public List<Flower> getFlowerByCatalogPaging(int catalogid, int currentPage, int pageSize);
+	public int getTotalByCatalog(int catalogid);
 }

@@ -30,8 +30,8 @@
 
 
 	<s:iterator value="#request.catalogs" id="catalog">
-		<a href="browseFlowerPaging.action?catalogid=<s:property value="#catalog.catalogid"/>
-    &currentPage=1" target="_self"><s:property value="#catalog.catalogname"/></a>   
+		<a href="browseFlowerPaging.action?catalogid=<s:property value='#catalog.catalogid'/>&currentPage=1" 
+    target="_self"><s:property value="#catalog.catalogname"/></a>   
      <br><br>
 	</s:iterator>
 </body>

@@ -9,5 +9,9 @@
 		<action name="browseNewFlower" class="flowerAction" method="browseNewFlower">
 			<result name="success">/newFlower.jsp</result>
 		</action>
+		<action name="browseFlowerPaging" class="flowerAction" method="browseFlowerPaging">
+			<result name="success">/browseFlowerPaging.jsp</result>
+		</action>
+		
 	</package>
 </struts>    

@@ -28,8 +28,23 @@ public class FlowerService implements IFlowerService{
 	 */
 	@Override
 	public List<Flower> getNewFlowers() {
-		List<Flower> flowers = flowerDao.getNewFlowers();
-		return flowers;
+		return flowerDao.getNewFlowers();
+	}
+
+	/**
+	 * 获取分页后的对应的页面的鲜花的List
+	 */
+	@Override
+	public List<Flower> getFlowerByCatalogPaging(int catalogid, int currentPage, int pageSize) {
+		return flowerDao.getFlowerByCatalogPaging(catalogid, currentPage, pageSize);
+	}
+
+	/**
+	 * 获取总共的鲜花的款式的数量
+	 */
+	@Override
+	public int getTotalByCatalog(int catalogid) {
+		return flowerDao.getTotalByCatalog(catalogid);
 	}
 
 }
