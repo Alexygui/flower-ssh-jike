@@ -12,6 +12,9 @@
 		<action name="browseFlowerPaging" class="flowerAction" method="browseFlowerPaging">
 			<result name="success">/browseFlowerPaging.jsp</result>
 		</action>
-		
+		<action name="addUser" class="userAction" method="addUser">
+			<result name="success">/register_success.jsp</result>
+			<result name="error">/register.jsp</result>
+		</action>	
 	</package>
 </struts>    
