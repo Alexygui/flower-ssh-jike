@@ -29,4 +29,12 @@ public class UserService implements IUserService{
 		return userDao.addOrUpdateUser(user);
 	}
 
+	/**
+	 * 检查登录的用户是否在数据库已经注册
+	 */
+	@Override
+	public User checkUser(User user) {
+		return userDao.checkUser(user);
+	}
+
 }

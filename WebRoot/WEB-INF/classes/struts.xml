@@ -16,5 +16,12 @@
 			<result name="success">/register_success.jsp</result>
 			<result name="error">/register.jsp</result>
 		</action>	
+		<action name="checkUser" class="userAction" method="checkUser">
+			<result name="success">/login_success.jsp</result>
+			<result name="error">/login_failure.jsp</result>
+		</action>
+		<action name="logOut" class="userAction" method="logOut">
+			<result name="success">/index.jsp</result>
+		</action>
 	</package>
 </struts>    
