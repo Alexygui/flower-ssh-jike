@@ -2,6 +2,8 @@ package com.aaa.action;
 
 import java.util.Map;
 
+import org.hibernate.Session;
+
 import com.aaa.model.User;
 import com.aaa.model.Userdetail;
 import com.aaa.service.IUserService;
@@ -14,11 +16,31 @@ import com.opensymphony.xwork2.ActionSupport;
  */
 public class UserAction extends ActionSupport{
 	/**
-	 * 声明User,Userdetail,UserService类，由spring注入
+	 * 声明UserService类，由spring注入
+	 * 声明User，Userdetail类，表单中提交的数据也交由spring注入
+	 * 声明pwd1，pwd2变量，和jsp文件中变量同名，也由spring注入
 	 */
 	private User user;
 	private Userdetail userdetail;
 	private IUserService userService;
+	
+	private String pwd1;
+	private String pwd2;
+	
+	
+	
+	public String getPwd1() {
+		return pwd1;
+	}
+	public void setPwd1(String pwd1) {
+		this.pwd1 = pwd1;
+	}
+	public String getPwd2() {
+		return pwd2;
+	}
+	public void setPwd2(String pwd2) {
+		this.pwd2 = pwd2;
+	}
 	public User getUser() {
 		return user;
 	}
@@ -87,5 +109,47 @@ public class UserAction extends ActionSupport{
 		Map session = ActionContext.getContext().getSession();
 		session.remove("user");
 		return SUCCESS;
+	}
+	
+	/**
+	 * 更新用户的Userdetail数据
+	 */
+	public String updateUserDetail() {
+		Map session = ActionContext.getContext().getSession();
+		//获得session中保存的已登录的User的对象
+		User user2 = (User) session.get("user");
+		Userdetail userdetail2 = user2.getUserdetail();
+		userdetail2.setAddress(userdetail.getAddress());
+		userdetail2.setCsrq(userdetail.getCsrq());
+		userdetail2.setEmail(userdetail.getEmail());
+		userdetail2.setPhone(userdetail.getPhone());
+		userdetail2.setTruename(userdetail.getPhone());
+		userdetail2.setXb(userdetail.getXb());
+		if(userService.addOrUpdateUser(user2)) {
+			session.put("user", user2);
+			return SUCCESS;
+		} else {
+			return ERROR;
+		}
+	}
+	
+	/**
+	 * 修改用户密码
+	 */
+	public String updateUserPassword() {
+		Map session = ActionContext.getContext().getSession();
+		User user2 = (User) session.get("user");
+		if(user2.getPassword().equals(pwd1)) {
+			user2.setPassword(pwd2);
+			//更新数据库，将新密码写入数据库
+			userService.addOrUpdateUser(user2);
+			//将用户从session注销，让用户重新用新密码登录
+			session.remove(user2);
+			return SUCCESS;
+		} else {
+			Map request = (Map) ActionContext.getContext().get("request");
+			request.put("msg", "旧密码有误");
+			return ERROR;
+		}
 	}
 }
