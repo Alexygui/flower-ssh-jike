@@ -78,6 +78,9 @@
 	<bean id="userAction" class="com.aaa.action.UserAction">
 		<property name="userService" ref="userService"></property>
 	</bean>
+	<bean id="shoppingAction" class="com.aaa.action.ShoppingAction">
+		<property name="flowerService" ref="flowerService"></property>
+	</bean>
 
 	 <!-- 配置事务 -->
 	<bean id="transactionManager"

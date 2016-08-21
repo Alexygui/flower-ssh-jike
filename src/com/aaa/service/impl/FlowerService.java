@@ -47,4 +47,9 @@ public class FlowerService implements IFlowerService{
 		return flowerDao.getTotalByCatalog(catalogid);
 	}
 
+	@Override
+	public Flower getFlowerById(int flowerid) {
+		return flowerDao.getFlowerById(flowerid);
+	}
+
 }

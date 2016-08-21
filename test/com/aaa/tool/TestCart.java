@@ -1,4 +1,4 @@
-package com.aaa.util;
+package com.aaa.tool;
 
 import javax.annotation.Resource;
 

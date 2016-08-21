@@ -40,12 +40,12 @@
 
  			<s:iterator value="#request.flowers" id="flower">
  				<div class="newflower">
- 					<s:form action="shoppingAction" method="post" theme="simple">
+ 					<s:form action="addToCart" method="post" theme="simple">
  						<img src="pic/<s:property value="#flower.picture"/>"/><br>
  						<s:property value="#flower.flowername"/><br>
  						<s:property value="#flower.price"/>元<br>
  						数量<s:textfield size="4" name="quantity"></s:textfield> 	
- 						<input type="hidden" name="id" value='<s:property value="#flower.flowerid"/>'>					
+ 						<input type="hidden" name="flowerid" value='<s:property value="#flower.flowerid"/>'>					
  						<s:submit value="购买"/>
  					</s:form>
  				</div>

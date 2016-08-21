@@ -72,4 +72,19 @@ public class FlowerDao implements IFlowerDao {
 		return flowers.size();
 	}
 
+	/**
+	 * 通过鲜花的id获得鲜花的数据
+	 */
+	@Override
+	public Flower getFlowerById(int flowerid) {
+//System.out.println(flowerid);
+		Session session = sessionFactory.openSession();
+		Transaction transaction = session.beginTransaction();
+		Query query = session.createQuery("from Flower where flowerid=" + flowerid);
+		List flowers = query.list();
+		transaction.commit();
+		session.close();
+		return (Flower) flowers.get(0);
+	}
+
 }
