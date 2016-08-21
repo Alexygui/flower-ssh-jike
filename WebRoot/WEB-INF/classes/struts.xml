@@ -32,7 +32,14 @@
 			<result name="error">/modifyPassword.jsp</result>
 		</action>
 		<action name="addToCart" class="shoppingAction" method="addToCart">
-			<result>/addToCart_success.jsp</result>
+			<result name="success">/addToCart_success.jsp</result>
+		</action>
+		<action name="updateAction" class="shoppingAction" method="updateAction">
+			<result name="success">/showCart.jsp</result>
+		</action>
+		<action name="checkOut" class="shoppingAction" method="checkOut">
+			<result name="success">/checkout_success.jsp</result>
+			<result name="error">/login.jsp</result>
 		</action>
 	</package>
 </struts>    

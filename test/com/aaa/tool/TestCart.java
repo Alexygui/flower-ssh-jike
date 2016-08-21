@@ -22,4 +22,9 @@ public class TestCart {
 	public void testTotalPrice() {
 		
 	}
+	
+	@Test
+	public void testAddToCart() {
+		
+	}
 }
