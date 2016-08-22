@@ -47,9 +47,20 @@ public class FlowerService implements IFlowerService{
 		return flowerDao.getTotalByCatalog(catalogid);
 	}
 
+	/**
+	 * 通过鲜花的id号获取鲜花的对象
+	 */
 	@Override
 	public Flower getFlowerById(int flowerid) {
 		return flowerDao.getFlowerById(flowerid);
+	}
+
+	/**
+	 * 将新添加的鲜花或修改后的鲜花的的数据保存到数据库，并返回保存结果
+	 */
+	@Override
+	public boolean addOrUpdateFlower(Flower flower) {
+		return flowerDao.addOrUpdateFlower(flower);
 	}
 
 }

@@ -37,9 +37,13 @@
 		<action name="updateAction" class="shoppingAction" method="updateAction">
 			<result name="success">/showCart.jsp</result>
 		</action>
-		<action name="checkOut" class="shoppingAction" method="checkOut">
+		<action name="checkOut" class="orderAction" method="checkOut">
 			<result name="success">/checkout_success.jsp</result>
 			<result name="error">/login.jsp</result>
+		</action>
+		<action name="addOrUpdateFlower" class="flowerAction" method="addOrUpdateFlower">
+			<result name="success">/addNewFlower_success.jsp</result>
+			<result name="error">/addNewFlower.jsp</result>
 		</action>
 	</package>
 </struts>    

@@ -29,9 +29,9 @@
 		<property name="hibernateProperties">
 			<props>
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
-				<!-- <prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.show_sql">true</prop>
 				<prop key="hibernate.format_sql">true</prop>
-				<prop key="hibernate.hbm2ddl.auto">update</prop> -->
+				<prop key="hibernate.hbm2ddl.auto">update</prop> 
 			</props>
 		</property>
 		<!-- 加载hibernate中的映射文件 -->
@@ -60,16 +60,24 @@
 	<bean id="userDao" class="com.aaa.dao.impl.UserDao">
 		<property name="sessionFactory" ref="sessionFactory"></property>	
 	</bean>
+	<bean id="orderDao" class="com.aaa.dao.impl.OrderDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>	
+	</bean>
+	
 	<!-- 配置service层，指向dao层的catalogDao -->
 	<bean id="catalogService" class="com.aaa.service.impl.CatalogService">
 		<property name="catalogDao" ref="catalogDao"></property>
 	</bean>
-	<bean name="flowerService" class="com.aaa.service.impl.FlowerService">
+	<bean id="flowerService" class="com.aaa.service.impl.FlowerService">
 		<property name="flowerDao" ref="flowerDao"></property>
 	</bean>
-	<bean name="userService" class="com.aaa.service.impl.UserService">
+	<bean id="userService" class="com.aaa.service.impl.UserService">
 		<property name="userDao" ref="userDao"></property>	
 	</bean>
+	<bean id="orderService" class="com.aaa.service.impl.OrderService">
+		<property name="orderDao" ref="orderDao"></property>
+	</bean>
+	
 	<!-- 配置action层，指向service层的catalogService -->
 	<bean id="flowerAction" class="com.aaa.action.FlowerAction">
 		<property name="catalogService" ref="catalogService"></property>
@@ -80,6 +88,9 @@
 	</bean>
 	<bean id="shoppingAction" class="com.aaa.action.ShoppingAction">
 		<property name="flowerService" ref="flowerService"></property>
+	</bean>
+	<bean id="orderAction" class="com.aaa.action.OrderAction">
+		<property name="orderService" ref="orderService"></property>
 	</bean>
 
 	 <!-- 配置事务 -->

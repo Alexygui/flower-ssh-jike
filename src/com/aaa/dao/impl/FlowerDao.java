@@ -87,4 +87,21 @@ public class FlowerDao implements IFlowerDao {
 		return (Flower) flowers.get(0);
 	}
 
+	/**
+	 * 将新添加的鲜花或修改后的鲜花的的数据保存到数据库，并返回保存结果
+	 */
+	@Override
+	public boolean addOrUpdateFlower(Flower flower) {
+		Session session = sessionFactory.openSession();
+		Transaction transaction = session.beginTransaction();
+//		session.save(flower);  不仅要保存，还要更新，用saveOrUpdate()方法
+System.out.println("catalogid="+flower.getCatalog().getCatalogid());
+		session.saveOrUpdate(flower);		
+		session.flush();
+		session.clear();
+		transaction.commit();
+		session.close();
+		return true;
+	}
+
 }

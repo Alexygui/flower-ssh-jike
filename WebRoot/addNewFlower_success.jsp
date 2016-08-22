@@ -9,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>My JSP 'admin_main.jsp' starting page</title>
+    <title>My JSP 'addNewFlower_success.jsp' starting page</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -23,22 +23,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-	<div class="content">
-	<!-- 网页左侧的显示内容 -->
-		<div class="left">	
-			<a href="addNewFlower.jsp" target="_blank">添加新花品</a><br></br>
-			<a href="managerFlower.jsp" target="_blank">管理花品</a><br></br>
-			<a href="managerUser.jsp" target="_blank">顾客账号管理</a><br></br>
-			<a href="logOut.action" target="_top">注销</a><br></br>
-       	</div>
-       	
-       	<!-- 网页右侧显示内容 -->
-		<div class="right">
-			
-			<s:action name="browseNewFlower" executeResult="true"></s:action>
-	
-			</div>
-	</div>
-	<jsp:include page="foot.jsp"></jsp:include>
+操作成功！
   </body>
 </html>

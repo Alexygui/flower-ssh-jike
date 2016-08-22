@@ -47,7 +47,7 @@ public class ShoppingAction extends ActionSupport {
 	 */
 	public String addToCart() {
 		Flower flower = flowerService.getFlowerById(flowerid);
-System.out.println("floweridl=" + flowerid);
+//System.out.println("floweridl=" + flowerid);
 		Orderitem orderitem = new Orderitem();
 		orderitem.setFlower(flower);
 		orderitem.setQuantity(quantity);
@@ -60,7 +60,7 @@ System.out.println("floweridl=" + flowerid);
 		cart.addFlower(flowerid, orderitem);
 		//把修改的数据重新添加到session中
 		session.put("cart", cart);
-System.out.println("items.size=" + cart.getItems().size());
+//System.out.println("items.size=" + cart.getItems().size());
 		return SUCCESS;
 	}
 
