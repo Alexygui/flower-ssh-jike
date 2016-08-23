@@ -63,4 +63,12 @@ public class FlowerService implements IFlowerService{
 		return flowerDao.addOrUpdateFlower(flower);
 	}
 
+	/**
+	 * 从数据库获取所有的鲜花的数据
+	 */
+	@Override
+	public List<Flower> getAllFlowerPaging() {
+		return flowerDao.getAllFlowerPaging();
+	}
+
 }

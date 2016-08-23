@@ -45,5 +45,8 @@
 			<result name="success">/addNewFlower_success.jsp</result>
 			<result name="error">/addNewFlower.jsp</result>
 		</action>
+		<action name="managerFlower" class="flowerAction" method="browseAllFlowerPaging">
+			<result name="success">/browseAllFlowerPaging.jsp</result>	
+		</action>
 	</package>
 </struts>    

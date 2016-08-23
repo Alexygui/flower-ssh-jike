@@ -52,7 +52,7 @@
 					<s:file name="upload" label="图片"></s:file>	
 					<s:submit value="添加"></s:submit>
 				</s:form>
-<s:debug></s:debug>
+<%-- <s:debug></s:debug> --%>
 			</div>
 		</div>
 	</div>

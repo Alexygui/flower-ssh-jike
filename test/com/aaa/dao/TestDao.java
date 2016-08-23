@@ -55,4 +55,10 @@ public class TestDao {
 		//因为是对象类型，可能不能用断言，即使内容一样，也是不一样的对象
 		Assert.assertEquals("ty", userDao.checkUser(user1).getUsername());
 	}
+	
+	@Test
+	public void testGetAllFlowerPaging() {
+		List<Flower> flowers = flowerDao.getAllFlowerPaging();
+		System.out.println("flowers.size = " + flowers.size());
+	}
 }

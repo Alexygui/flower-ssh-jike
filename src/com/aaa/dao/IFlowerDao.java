@@ -10,4 +10,5 @@ public interface IFlowerDao {
 	public int getTotalByCatalog(int catalogid);
 	public Flower getFlowerById(int flowerid);
 	public boolean addOrUpdateFlower(Flower flower);
+	public List<Flower> getAllFlowerPaging();
 }

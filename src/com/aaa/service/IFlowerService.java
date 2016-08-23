@@ -10,4 +10,5 @@ public interface IFlowerService {
 	public int getTotalByCatalog(int catalogid);
 	public Flower getFlowerById(int flowerid);
 	public boolean addOrUpdateFlower(Flower flower2);
+	public List<Flower> getAllFlowerPaging();
 }

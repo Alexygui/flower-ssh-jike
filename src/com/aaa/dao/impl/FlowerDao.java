@@ -104,4 +104,17 @@ System.out.println("catalogid="+flower.getCatalog().getCatalogid());
 		return true;
 	}
 
+	/**
+	 * 从数据库中获取所有的鲜花的数据
+	 */
+	@Override
+	public List<Flower> getAllFlowerPaging() {
+		Session session = sessionFactory.openSession();
+		Transaction transaction = session.beginTransaction();
+		Query query = session.createQuery("from Flower order by flowerid desc");
+		List flowers = query.list();
+		transaction.commit();
+		session.close();
+		return flowers;
+	}
 }

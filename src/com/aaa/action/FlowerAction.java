@@ -161,7 +161,7 @@ public class FlowerAction extends ActionSupport {
 	 */
 	public String addOrUpdateFlower() {
 		String path = ServletActionContext.getServletContext().getRealPath("/pic");
-System.out.println(path);
+//System.out.println(path);
 		Flower flowerNewest = (Flower) flowerService.getNewFlowers().get(0);
 		//将当前的鲜花的id值设置为最新上架的鲜花的id值加1，也就是自增的效果
 		int currentFlowerid = flowerNewest.getFlowerid() + 1;
@@ -171,8 +171,8 @@ System.out.println(path);
 		//用于添加到数据库的Flower对象
 		Flower flower2 = new Flower();
 		Catalog catalog = flower.getCatalog();
-System.out.println("flowername="+flower.getFlowername());
-System.out.println("catalogname=" + catalog.getCatalogname());
+//System.out.println("flowername="+flower.getFlowername());
+//System.out.println("catalogname=" + catalog.getCatalogname());
 		flower2.setCatalog(catalog);
 		flower2.setFlowername(flower.getFlowername());
 		if(flower.getPicture() == null) {
@@ -186,5 +186,15 @@ System.out.println("catalogname=" + catalog.getCatalogname());
 		} else {
 			return ERROR;
 		}
+	}
+	
+	/**
+	 * 查询所有的鲜花的方法
+	 */
+	public String browseAllFlowerPaging() {
+		List<Flower> flowers = flowerService.getAllFlowerPaging();
+		Map request = (Map) ActionContext.getContext().get("request");
+		request.put("flowers", flowers);
+		return SUCCESS;
 	}
 }
