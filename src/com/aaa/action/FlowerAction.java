@@ -45,6 +45,10 @@ public class FlowerAction extends ActionSupport {
 	 * 管理员保存修改图片时的图片和Flower对象的id号
 	 */
 	private String picture;
+
+	/**
+	 * 用于实现删除功能的flowerid
+	 */
 	private int flowerid;
 
 	public Flower getFlower() {
@@ -164,17 +168,17 @@ public class FlowerAction extends ActionSupport {
 		// 将当前的鲜花的id值设置为最新上架的鲜花的id值加1，也就是自增的效果
 		int currentFlowerid = flowerNewest.getFlowerid() + 1;
 		path = path + "/" + currentFlowerid + this.getUploadFileName();
-//System.out.println("uploadfilename="+getUpload().getName());//测试代码
+		// System.out.println("uploadfilename="+getUpload().getName());//测试代码
 		// 将图片上传到服务器的/pic目录下
-//		此处的判空没有用，仍然会出错，因为本地缓存中是有文件的，不是null，目前这是个小bug，不过不影响网页的使用，先不管了
-//		if (this.getUpload() != null) {
-//			new UploadPhoto().upload(this.getUpload(), path);
-//		}
-		//这种方法的代码修改鲜花的属性的时候不会报错，不过却不能添加鲜花了，所以也不行
-//		flower.setPicture(currentFlowerid + this.getUploadFileName());
-//		if(flower.getPicture() == null) {
-//			new UploadPhoto().upload(this.getUpload(), path);
-//		}
+		// 此处的判空没有用，仍然会出错，因为本地缓存中是有文件的，不是null，目前这是个小bug，不过不影响网页的使用，先不管了
+		// if (this.getUpload() != null) {
+		// new UploadPhoto().upload(this.getUpload(), path);
+		// }
+		// 这种方法的代码修改鲜花的属性的时候不会报错，不过却不能添加鲜花了，所以也不行
+		// flower.setPicture(currentFlowerid + this.getUploadFileName());
+		// if(flower.getPicture() == null) {
+		// new UploadPhoto().upload(this.getUpload(), path);
+		// }
 		new UploadPhoto().upload(this.getUpload(), path);
 		// 用于添加到数据库的Flower对象
 		Flower flower2 = new Flower();
@@ -184,7 +188,7 @@ public class FlowerAction extends ActionSupport {
 		flower2.setCatalog(catalog);
 		flower2.setFlowername(flower.getFlowername());
 		// 此语句用于将修改花品属性jsp页面中的flowerid传到本方法中，添加花品中不需要此变量，为null
-//		flower2.setFlowerid(flowerid);
+		// flower2.setFlowerid(flowerid);
 		flower2.setPicture(currentFlowerid + this.getUploadFileName());
 		flower2.setPrice(flower.getPrice());
 		if (flowerService.addOrUpdateFlower(flower2)) {
@@ -213,38 +217,46 @@ public class FlowerAction extends ActionSupport {
 		request.put("flower", modifyFlower);
 		return SUCCESS;
 	}
-	
+
 	/**
 	 * addOrUpdateFlower有bug，用这个方法更新一个鲜花品类的属性
 	 */
 	public String updateOneFlower() {
-		//获取保存照片的绝对路径
+		// 获取保存照片的绝对路径
 		String path = ServletActionContext.getServletContext().getRealPath("/pic");
 		List list = flowerService.getNewFlowers();
 		Flower tempFlower = (Flower) list.get(0);
 		int currentFlowerid = tempFlower.getFlowerid() + 1;
 		flower.setPicture(currentFlowerid + this.getUploadFileName());
-		
+
 		Flower flowerData = new Flower();
 		flowerData.setFlowerid(flower.getFlowerid());
 		flowerData.setCatalog(flower.getCatalog());
 		flowerData.setFlowername(flower.getFlowername());
 		flowerData.setPrice(flower.getPrice());
-System.out.println("flower.getPicture=" + flower.getPicture());
-		if(flower.getPicture() == null) {
+		System.out.println("flower.getPicture=" + flower.getPicture());
+		if (flower.getPicture() == null) {
 			flowerData.setPicture(picture);
-		} else {	
-			//将照片重命名，防止重名覆盖
+		} else {
+			// 将照片重命名，防止重名覆盖
 			path = path + "/" + currentFlowerid + this.getUploadFileName();
-	System.out.println("path=" + path); //测试代码
-			//将照片对象传输到服务器端的path路径
+			System.out.println("path=" + path); // 测试代码
+			// 将照片对象传输到服务器端的path路径
 			new UploadPhoto().upload(this.getUpload(), path);
 			flowerData.setPicture(currentFlowerid + this.getUploadFileName());
 		}
-		if(flowerService.addOrUpdateFlower(flowerData)) {
+		if (flowerService.addOrUpdateFlower(flowerData)) {
 			return SUCCESS;
 		} else {
 			return ERROR;
 		}
+	}
+
+	/**
+	 * 删除某一款鲜花
+	 */
+	public String deleteOneFlower() {
+		flowerService.deleteOneFlower(flowerid);
+		return SUCCESS;
 	}
 }

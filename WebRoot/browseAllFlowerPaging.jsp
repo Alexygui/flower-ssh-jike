@@ -41,7 +41,7 @@
 					<input type="hidden" name="flowerid" value="<s:property value="#flower.flowerid"/>"/>	
 					<!-- 运用javascript将按钮分别指向不同的action -->
 					<input type="submit" value="修改" onclick="this.form.action='displayOneFlower'"/>	
-					<input type="submit" value="删除" onblur="this.form.action='deleteOneFlower'"/>
+					<input type="submit" value="删除" onclick="this.form.action='deleteOneFlower'"/>
 			</form>
 		</div>
 		</s:iterator>

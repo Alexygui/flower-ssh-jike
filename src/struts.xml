@@ -55,5 +55,8 @@
 			<result name="success">/addNewFlower_success.jsp</result>
 			<result name="error">/displayOneFlower.jsp</result>
 		</action>
+		<action name="deleteOneFlower" class="flowerAction" method="deleteOneFlower">
+			<result name="success">/deleteOneFlower_success.jsp</result>
+		</action>
 	</package>
 </struts>    

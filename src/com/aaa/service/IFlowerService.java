@@ -11,4 +11,5 @@ public interface IFlowerService {
 	public Flower getFlowerById(int flowerid);
 	public boolean addOrUpdateFlower(Flower flower2);
 	public List<Flower> getAllFlowerPaging();
+	public void deleteOneFlower(int flowerid);
 }

@@ -118,4 +118,19 @@ public class FlowerDao implements IFlowerDao {
 		session.close();
 		return flowers;
 	}
+
+	/**
+	 * 删除某一款的鲜花
+	 */
+	@Override
+	public void deleteOneFlower(int flowerid) {
+		Session session = sessionFactory.openSession();
+		Transaction transaction = session.beginTransaction();
+		Query query = session.createQuery("from Flower where flowerid=" + flowerid);
+		List<Flower> list = query.list();
+		Flower flower = list.get(0);
+		session.delete(flower);
+		transaction.commit();
+		session.close();
+	}
 }

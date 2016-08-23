@@ -71,4 +71,12 @@ public class FlowerService implements IFlowerService{
 		return flowerDao.getAllFlowerPaging();
 	}
 
+	/**
+	 * 删除某一款的鲜花
+	 */
+	@Override
+	public void deleteOneFlower(int flowerid) {
+		flowerDao.deleteOneFlower(flowerid);
+	}
+
 }
