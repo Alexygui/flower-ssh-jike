@@ -8,6 +8,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+/**
+ * 将file文件上传到服务器path路径的类
+ */
 public class UploadPhoto {
 	public void upload(File file, String path) {
 		InputStream inputStream;

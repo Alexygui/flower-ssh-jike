@@ -48,5 +48,12 @@
 		<action name="managerFlower" class="flowerAction" method="browseAllFlowerPaging">
 			<result name="success">/browseAllFlowerPaging.jsp</result>	
 		</action>
+		<action name="displayOneFlower" class="flowerAction" method="displayOneFlower">
+			<result name="success">/displayOneFlower.jsp</result>
+		</action>
+		<action name="updateOneFlower" class="flowerAction" method="updateOneFlower">
+			<result name="success">/addNewFlower_success.jsp</result>
+			<result name="error">/displayOneFlower.jsp</result>
+		</action>
 	</package>
 </struts>    

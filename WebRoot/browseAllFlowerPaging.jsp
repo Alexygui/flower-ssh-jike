@@ -35,7 +35,6 @@
 			<form action="flowerAction" method="post">
 				<img src="pic/<s:property value="#flower.picture"/>"><br>
 				<s:property value="#flower.flowername"/><br>
-				<s:property value="#flower.flowername"/><br>
 				<s:property value="#flower.price"/>元<br>
 					<!-- 此处只要上传flowerid的值就可以了-->
 					<!-- 等正常显示以后测试一下删除value的效果怎么样，不过估计这里确实是显示flowerid的值的  -->

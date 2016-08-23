@@ -95,8 +95,9 @@ public class FlowerDao implements IFlowerDao {
 		Session session = sessionFactory.openSession();
 		Transaction transaction = session.beginTransaction();
 //		session.save(flower);  不仅要保存，还要更新，用saveOrUpdate()方法
-System.out.println("catalogid="+flower.getCatalog().getCatalogid());
-		session.saveOrUpdate(flower);		
+//System.out.println("catalogid="+flower.getCatalog().getCatalogid());
+//System.out.println("flowerid = " + flower.getFlowerid());
+		session.saveOrUpdate(flower);	
 		session.flush();
 		session.clear();
 		transaction.commit();

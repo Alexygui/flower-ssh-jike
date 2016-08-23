@@ -3,8 +3,7 @@
 
 <%
 	String path = request.getContextPath();
-	String basePath = request.getScheme() + "://"
-			+ request.getServerName() + ":" + request.getServerPort()
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
 
@@ -20,38 +19,50 @@
 <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 <meta http-equiv="description" content="This is my page">
 
-	<link rel="stylesheet" type="text/css" href="css/jkxyflower.css">
-	
+<link rel="stylesheet" type="text/css" href="css/jkxyflower.css">
+
 </head>
 
 <body>
-	
-	 <div class="content">
-		<div class="left">
-		</div>
+
+	<div class="content">
+		<div class="left"></div>
 		<div class="right">
-		<div style="padding-left:200px;width: 600px;">
-		<s:action name="browseCatalog" executeResult="false"/>
-		<s:set value="#request.flower" id="flower"></s:set>
-		  <s:form action="addOrUpdateFlower.action" method="post" enctype="multipart/form-data">
-		 <tr><td></td><td>请在此修改花品的信息</td></tr>
-  
-  <s:textfield label="品名"  name="flower.flowername" value="%{#flower.flowername}"></s:textfield>
-   <tr><td>价格</td><td><input type="text" name="flower.price" value="<s:property value="#flower.price"/>"> <label>元</label></td></tr>
-    <s:set value="#request.catalogs" id="catalog"></s:set> 
-    <s:select label="分类" list="#catalog"  listKey="catalogid" listValue="catalogname" name="flower.catalog.catalogid" value="%{#flower.catalog.catalogid}"></s:select>
-      <tr> <td></td><td><input type="file" name="upload" value="<s:property value="#flower.picture"/>"/></td><td  >
+			<div style="padding-left:200px;width: 600px;"></div>
 
-<img  alt=""   src="pic/<s:property value="#flower.picture"/>">
-</td></tr>
-       <s:hidden name="flower.flowerid" value="%{#flower.flowerid}"></s:hidden>
-        <s:hidden name="picture" value="%{#flower.picture}"></</s:hidden>>
+			<s:action name="browseCatalog" executeResult="false" />
+			<s:set value="#request.flower" id="flower" />
+			<s:form action="updateOneFlower" method="post"
+				enctype="multipart/form-data">
+				<tr>
+					<td></td>
+					<td>请在此修改花品的信息</td>
+				</tr>
+				<s:textfield label="品名" name="flower.flowername"
+					value="%{#flower.flowername}"></s:textfield>
+				<!-- 换成html标签风格，html显示动态页面似乎要复杂一点 -->
+				<tr>
+					<td>价格</td>
+					<td><input type="text" name="flower.price"
+						value='<s:property value="%{#flower.price}"/>' /><label>元</label></td>
+				</tr>
 
-   <s:submit value="修改"></s:submit>
-  
-    </s:form> 
-    </div>
-			</div>
+				<s:set value="#request.catalogs" id="catalog"></s:set>
+				<s:select label="分类" list="#catalog" listKey="catalogid"
+					listValue="catalogname" name="flower.catalog.catalogid"></s:select>
+				<tr>
+					<td></td>
+					<td><input type="file" name="upload"
+						value="<s:property value="#flower.picture"/>" /></td>
+					<%-- <td></td><td><s:file  name="upload" value="#flower.picture"/></td> --%>
+					<td><img src="pic/<s:property value="#flower.picture"/>"/></td>
+				</tr>
+				<s:hidden name="flower.flowerid" value="%{#flower.flowerid}"></s:hidden>
+				<s:hidden name="picture" value="%{#flower.picture}"></s:hidden>
+				<s:submit value="修改"></s:submit>
+			</s:form>
+
+		</div>
 	</div>
 	<jsp:include page="foot.jsp"></jsp:include>
 </body>
