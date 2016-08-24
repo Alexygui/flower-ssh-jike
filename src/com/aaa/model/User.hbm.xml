@@ -27,6 +27,6 @@
         </set>
         <!-- 层叠的效果，刚user表执行操作的时候，userdetail表也执行同样的操作 -->
         <one-to-one name="userdetail" class="com.aaa.model.Userdetail" cascade="all"></one-to-one>
-        <one-to-one name="guashi" class="com.aaa.model.Guashi"></one-to-one>
+        <one-to-one name="guashi" class="com.aaa.model.Guashi" property-ref="user"></one-to-one>
     </class>
 </hibernate-mapping>

@@ -10,6 +10,10 @@
             <column name="id" />
             <generator class="identity" />
         </id>
-        <one-to-one name="user" class="com.aaa.model.User"></one-to-one>
+       <!--  <one-to-one name="user" class="com.aaa.model.User" fetch="select" >
+        </one-to-one> -->
+        <many-to-one name="user" class="com.aaa.model.User" fetch="select" unique="true">
+        		<column name="userid"></column>
+        </many-to-one>
     </class>
 </hibernate-mapping>

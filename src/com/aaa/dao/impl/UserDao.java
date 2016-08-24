@@ -8,6 +8,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import com.aaa.dao.IUserDao;
+import com.aaa.model.Guashi;
 import com.aaa.model.User;
 
 /**
@@ -60,6 +61,50 @@ public class UserDao implements IUserDao {
 			return user2;
 		}
 		return null;
+	}
+
+	/**
+	 * 挂失用户
+	 */
+	public boolean guashiUser(int userid) {
+		Session session = sessionFactory.openSession();
+		Transaction transaction = session.beginTransaction();
+		Query query = session.createQuery("from User where userid=" + userid);
+//		User queryUser = (User) (query.list().get(0));
+		List list =  query.list();
+		User queryUser = (User)list.get(0); 
+System.out.println("userid=" + queryUser.getUserid());
+		Guashi userGuashi = new Guashi();
+		userGuashi.setUser(queryUser);
+		// 一对一双向关系，用于在User中记录是否挂失
+		queryUser.setGuashi(userGuashi);
+		session.save(userGuashi);
+//		session.saveOrUpdate(userGuashi);
+System.out.println("guashi.user.userid=" + userGuashi.getUser().getUserid());
+		transaction.commit();
+		session.close();
+		return true;
+	}
+
+	/**
+	 * 将用户的挂失解除
+	 */
+	@Override
+	public boolean jiechuguashiUser(int userid) {
+		Session session = sessionFactory.openSession();
+		Transaction transaction = session.beginTransaction();
+		Query query = session.createQuery("from Guashi where userid=" + userid);
+		Guashi userGuashi = (Guashi) query.list().get(0);
+		if (userGuashi != null) {
+			session.delete(userGuashi);
+		}
+		transaction.commit();
+		session.close();
+		if (userGuashi != null) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 }

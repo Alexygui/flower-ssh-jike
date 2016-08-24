@@ -58,5 +58,13 @@
 		<action name="deleteOneFlower" class="flowerAction" method="deleteOneFlower">
 			<result name="success">/deleteOneFlower_success.jsp</result>
 		</action>
+		<action name="guashiUser" class="userAction" method="guashiUser">
+			<result name="success">/czsuccess.jsp</result>
+			<result name="error">/managerUser.jsp</result>
+		</action>
+		<action name="jiechuguashiUser" class="userAction" method="jiechuguashiUser">
+			<result name="success">/czsuccess.jsp</result>
+			<result name="error">/managerUser.jsp</result>
+		</action>
 	</package>
 </struts>    
