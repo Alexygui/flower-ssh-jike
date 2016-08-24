@@ -107,4 +107,19 @@ System.out.println("guashi.user.userid=" + userGuashi.getUser().getUserid());
 		}
 	}
 
+	/**
+	 * 取出所有的已经挂失的用户的数据
+	 */
+	@Override
+	public List<Guashi> getGuashi() {
+		Session session = sessionFactory.openSession();
+		Transaction transaction = session.beginTransaction();
+		Query query = session.createQuery("from Guashi");
+		List<Guashi> guashiList = query.list();
+		transaction.commit();
+//由于hibernate的懒加载，此处的session不能关闭，不然User对象无法查询出从而导致错误
+//		session.close();
+		return guashiList;
+	}
+
 }

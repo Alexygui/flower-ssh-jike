@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
+	<!-- 定义拦截器的包 -->
+	<package name="loginpackage" extends="struts-default" namespace="/login">
+		<!-- 用于拦截已挂失用户的拦截器 -->
+		<interceptors>
+			<interceptor name="guashiInterceptor" class="com.aaa.util.GuashiInterceptor"></interceptor>	
+			<interceptor-stack name="guashiStack">
+				<!-- 引用struts2自身的拦截器 -->
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+				<!-- 引用我们自己定义的拦截器 -->
+				<interceptor-ref name="guashiInterceptor"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		
+		<action name="checkUser" class="userAction" method="checkUser">
+			<result name="success">/login_success.jsp</result>
+			<result name="error">/login_failure.jsp</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="guashiInterceptor"></interceptor-ref>
+		</action>
+	</package>
+	
+	<!-- action过滤器 -->
 	<package name="default" extends="struts-default">
 	<!-- flowerAction指向applicataionContext.xml中的flowerAction，所以class不用写具体路径名 -->
 		<action name="browseCatalog" class="flowerAction" method="browseCatalog">

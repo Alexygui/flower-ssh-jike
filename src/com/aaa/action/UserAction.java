@@ -198,4 +198,5 @@ public class UserAction extends ActionSupport {
 			return ERROR;
 		}
 	}
+	
 }

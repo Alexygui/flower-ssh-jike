@@ -26,10 +26,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body><jsp:include page="head.jsp"></jsp:include>
  <div style="clear: both;float:right;padding-top: 100px;padding-right: 200px;">
   <center>
-   <s:property value="#request.msg"/><br><br>
+   <s:property value="#request.message"/><br><br>
   顾客登录
  
-    <s:form action="checkUser" method="post">
+    <s:form action="login/checkUser" method="post">
     		<s:textfield name="user.username"></s:textfield>
     		<s:password name="user.password"></s:password>
     		<s:hidden name="user.role" value="customer"></s:hidden>

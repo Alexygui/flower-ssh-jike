@@ -1,5 +1,7 @@
 package com.aaa.service.impl;
 
+import java.util.List;
+
 import com.aaa.dao.IUserDao;
 import com.aaa.model.Guashi;
 import com.aaa.model.User;
@@ -52,6 +54,10 @@ public class UserService implements IUserService{
 	@Override
 	public boolean jiechuguashiUser(int userid) {
 		return userDao.jiechuguashiUser(userid);
+	}
+
+	public  List<Guashi> getGuashi() {
+		return userDao.getGuashi();
 	}
 
 }
