@@ -18,6 +18,4 @@ public class LoginInterceptor extends AbstractInterceptor{
 		}
 		return arg0.invoke();
 	}
-	
-
 }

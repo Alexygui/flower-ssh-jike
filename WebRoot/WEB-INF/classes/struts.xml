@@ -17,76 +17,104 @@
 		<action name="checkUser" class="userAction" method="checkUser">
 			<result name="success">/login_success.jsp</result>
 			<result name="error">/login_failure.jsp</result>
-			<interceptor-ref name="defaultStack"></interceptor-ref>
-			<interceptor-ref name="guashiInterceptor"></interceptor-ref>
+			<!-- <interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="guashiInterceptor"></interceptor-ref> -->
+			<interceptor-ref name="guashiStack"></interceptor-ref>
 		</action>
 	</package>
 	
 	<!-- action过滤器 -->
 	<package name="default" extends="struts-default">
+	
+	<interceptors>
+		<interceptor name="loginInterceptor" class="com.aaa.util.LoginInterceptor"></interceptor>
+		<interceptor-stack name="loginStack">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="loginInterceptor"></interceptor-ref>
+		</interceptor-stack>
+	</interceptors>
+	
 	<!-- flowerAction指向applicataionContext.xml中的flowerAction，所以class不用写具体路径名 -->
 		<action name="browseCatalog" class="flowerAction" method="browseCatalog">
 			<result name="success">/menu.jsp</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
 		</action>
 		<action name="browseNewFlower" class="flowerAction" method="browseNewFlower">
 			<result name="success">/newFlower.jsp</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
 		</action>
 		<action name="browseFlowerPaging" class="flowerAction" method="browseFlowerPaging">
 			<result name="success">/browseFlowerPaging.jsp</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
 		</action>
 		<action name="addUser" class="userAction" method="addUser">
 			<result name="success">/register_success.jsp</result>
 			<result name="error">/register.jsp</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
 		</action>	
 		<action name="checkUser" class="userAction" method="checkUser">
 			<result name="success">/login_success.jsp</result>
 			<result name="error">/login_failure.jsp</result>
+			<interceptor-ref name="loginStack"></interceptor-ref>
 		</action>
 		<action name="logOut" class="userAction" method="logOut">
 			<result name="success">/index.jsp</result>
+			<interceptor-ref name="loginStack"></interceptor-ref>
 		</action>
 		<action name="updateUserDetail" class="userAction" method="updateUserDetail">
 			<result name="success">/updateUserDetail_success.jsp</result>
 			<result name="error">/modifyDetail.jsp</result>
+			<interceptor-ref name="loginStack"></interceptor-ref>
 		</action>
 		<action name="updateUserPassword" class="userAction" method="updateUserPassword">
 			<result name="success">/login.jsp</result>
 			<result name="error">/modifyPassword.jsp</result>
+			<interceptor-ref name="loginStack"></interceptor-ref>
 		</action>
 		<action name="addToCart" class="shoppingAction" method="addToCart">
 			<result name="success">/addToCart_success.jsp</result>
+			<interceptor-ref name="loginStack"></interceptor-ref>
 		</action>
 		<action name="updateAction" class="shoppingAction" method="updateAction">
 			<result name="success">/showCart.jsp</result>
+			<interceptor-ref name="loginStack"></interceptor-ref>
 		</action>
 		<action name="checkOut" class="orderAction" method="checkOut">
 			<result name="success">/checkout_success.jsp</result>
 			<result name="error">/login.jsp</result>
+			<interceptor-ref name="loginStack"></interceptor-ref>
 		</action>
 		<action name="addOrUpdateFlower" class="flowerAction" method="addOrUpdateFlower">
 			<result name="success">/addNewFlower_success.jsp</result>
 			<result name="error">/addNewFlower.jsp</result>
+			<interceptor-ref name="loginStack"></interceptor-ref>
 		</action>
 		<action name="managerFlower" class="flowerAction" method="browseAllFlowerPaging">
-			<result name="success">/browseAllFlowerPaging.jsp</result>	
+			<result name="success">/browseAllFlowerPaging.jsp</result>
+			<interceptor-ref name="loginStack"></interceptor-ref>	
 		</action>
 		<action name="displayOneFlower" class="flowerAction" method="displayOneFlower">
 			<result name="success">/displayOneFlower.jsp</result>
+			<interceptor-ref name="loginStack"></interceptor-ref>
 		</action>
 		<action name="updateOneFlower" class="flowerAction" method="updateOneFlower">
 			<result name="success">/addNewFlower_success.jsp</result>
 			<result name="error">/displayOneFlower.jsp</result>
+			<interceptor-ref name="loginStack"></interceptor-ref>
 		</action>
 		<action name="deleteOneFlower" class="flowerAction" method="deleteOneFlower">
 			<result name="success">/deleteOneFlower_success.jsp</result>
+			<interceptor-ref name="loginStack"></interceptor-ref>
 		</action>
 		<action name="guashiUser" class="userAction" method="guashiUser">
 			<result name="success">/czsuccess.jsp</result>
 			<result name="error">/managerUser.jsp</result>
+			<interceptor-ref name="loginStack"></interceptor-ref>
 		</action>
 		<action name="jiechuguashiUser" class="userAction" method="jiechuguashiUser">
 			<result name="success">/czsuccess.jsp</result>
 			<result name="error">/managerUser.jsp</result>
+			<interceptor-ref name="loginStack"></interceptor-ref>
 		</action>
 	</package>
 </struts>    
